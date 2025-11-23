@@ -10,13 +10,13 @@ public enum Direction
 
 {
 
-&nbsp;   North,   // 0
+    North,   // 0
 
-&nbsp;   East,    // 1
+    East,    // 1
 
-&nbsp;   South,   // 2
+    South,   // 2
 
-&nbsp;   West     // 3
+    West     // 3
 
 }
 
@@ -32,7 +32,7 @@ if (currentDirection == Direction.North)
 
 {
 
-&nbsp;   Debug.Log("北を向いています");
+    Debug.Log("北を向いています");
 
 }
 
@@ -42,15 +42,15 @@ csharppublic enum WeaponType
 
 {
 
-&nbsp;   None = 0,
+    None = 0,
 
-&nbsp;   Sword = 1,
+    Sword = 1,
 
-&nbsp;   Bow = 2,
+    Bow = 2,
 
-&nbsp;   Magic = 5,
+    Magic = 5,
 
-&nbsp;   Hammer = 10
+    Hammer = 10
 
 }
 
@@ -62,19 +62,19 @@ csharppublic enum PlayerState
 
 {
 
-&nbsp;   Idle,
+    Idle,
 
-&nbsp;   Walk,
+    Walk,
 
-&nbsp;   Run,
+    Run,
 
-&nbsp;   Jump,
+    Jump,
 
-&nbsp;   Attack,
+    Attack,
 
-&nbsp;   Damage,
+    Damage,
 
-&nbsp;   Dead
+    Dead
 
 }
 
@@ -84,51 +84,51 @@ public class PlayerController : MonoBehaviour
 
 {
 
-&nbsp;   private PlayerState currentState = PlayerState.Idle;
+    private PlayerState currentState = PlayerState.Idle;
 
-&nbsp;   
+ 
 
-&nbsp;   void Update()
+    void Update()
 
-&nbsp;   {
+    {
 
-&nbsp;       switch (currentState)
+        switch (currentState)
 
-&nbsp;       {
+        {
 
-&nbsp;           case PlayerState.Idle:
+            case PlayerState.Idle:
 
-&nbsp;               HandleIdleState();
+                HandleIdleState();
 
-&nbsp;               break;
+                break;
 
-&nbsp;           case PlayerState.Walk:
+            case PlayerState.Walk:
 
-&nbsp;               HandleWalkState();
+                HandleWalkState();
 
-&nbsp;               break;
+                break;
 
-&nbsp;           case PlayerState.Jump:
+            case PlayerState.Jump:
 
-&nbsp;               HandleJumpState();
+                HandleJumpState();
 
-&nbsp;               break;
+                break;
 
-&nbsp;       }
+        }
 
-&nbsp;   }
+    }
 
-&nbsp;   
+ 
 
-&nbsp;   public void ChangeState(PlayerState newState)
+    public void ChangeState(PlayerState newState)
 
-&nbsp;   {
+    {
 
-&nbsp;       currentState = newState;
+        currentState = newState;
 
-&nbsp;       Debug.Log($"State changed to: {newState}");
+        Debug.Log($"State changed to: {newState}");
 
-&nbsp;   }
+    }
 
 }
 
@@ -138,13 +138,13 @@ csharppublic enum EnemyType
 
 {
 
-&nbsp;   Slime,
+    Slime,
 
-&nbsp;   Goblin,
+    Goblin,
 
-&nbsp;   Dragon,
+    Dragon,
 
-&nbsp;   Boss
+    Boss
 
 }
 
@@ -154,47 +154,47 @@ public class Enemy : MonoBehaviour
 
 {
 
-&nbsp;   \[SerializeField] private EnemyType enemyType;
+    \[SerializeField] private EnemyType enemyType;
 
-&nbsp;   
+ 
 
-&nbsp;   void Start()
+    void Start()
 
-&nbsp;   {
+    {
 
-&nbsp;       SetupEnemy(enemyType);
+        SetupEnemy(enemyType);
 
-&nbsp;   }
+    }
 
-&nbsp;   
+ 
 
-&nbsp;   void SetupEnemy(EnemyType type)
+    void SetupEnemy(EnemyType type)
 
-&nbsp;   {
+    {
 
-&nbsp;       switch (type)
+        switch (type)
 
-&nbsp;       {
+        {
 
-&nbsp;           case EnemyType.Slime:
+            case EnemyType.Slime:
 
-&nbsp;               maxHP = 50;
+                maxHP = 50;
 
-&nbsp;               moveSpeed = 2f;
+                moveSpeed = 2f;
 
-&nbsp;               break;
+                break;
 
-&nbsp;           case EnemyType.Dragon:
+            case EnemyType.Dragon:
 
-&nbsp;               maxHP = 500;
+                maxHP = 500;
 
-&nbsp;               moveSpeed = 5f;
+                moveSpeed = 5f;
 
-&nbsp;               break;
+                break;
 
-&nbsp;       }
+        }
 
-&nbsp;   }
+    }
 
 }
 
@@ -206,9 +206,9 @@ csharppublic class WeaponData : MonoBehaviour
 
 {
 
-&nbsp;   \[SerializeField] private WeaponType weaponType;  // Inspectorでドロップダウン表示
+    \[SerializeField] private WeaponType weaponType;  // Inspectorでドロップダウン表示
 
-&nbsp;   \[SerializeField] private DamageType damageTypes; // Flagsの場合は複数選択可能
+    \[SerializeField] private DamageType damageTypes; // Flagsの場合は複数選択可能
 
 }
 
@@ -232,7 +232,7 @@ csharpforeach (PlayerState state in System.Enum.GetValues(typeof(PlayerState)))
 
 {
 
-&nbsp;   Debug.Log(state);
+    Debug.Log(state);
 
 }
 
@@ -248,4 +248,12 @@ enumを使うメリット
 
 IntelliSense: IDEで候補が表示される
 ※ AIのコピー
+
+
+
+今回の場合
+
+Nomalは通常状態、数値として0としても扱うことができる
+
+Fireは火属性、数値として1としても扱うことができる　...etc
 
