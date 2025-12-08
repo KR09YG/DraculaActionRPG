@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a43438eb63818ea4795779ce0b878453, type: 3}
   m_Name: EnemyVerticalMove
   m_EditorClassIdentifier: 
-  _duration: 0.5
-  _range: 1
+  _duration: 1
+  _range: 0.5
