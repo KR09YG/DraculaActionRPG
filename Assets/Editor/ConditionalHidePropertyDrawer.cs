@@ -11,27 +11,32 @@ public class ConditionalHidePropertyDrawer : PropertyDrawer
 
         if (enabled)
         {
-            // ヘッダーがある場合は描画
+            Rect currentRect = position;
+
+            // ヘッダーがある場合は上部に描画
             if (!string.IsNullOrEmpty(condHAtt.Header))
             {
-                // ヘッダーを描画
-                Rect headerRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+                // ヘッダー用の矩形
+                Rect headerRect = new Rect(
+                    currentRect.x,
+                    currentRect.y,
+                    currentRect.width,
+                    EditorGUIUtility.singleLineHeight
+                );
+
+                // ヘッダーを太字で描画
                 EditorGUI.LabelField(headerRect, condHAtt.Header, EditorStyles.boldLabel);
 
-                // フィールドをHeaderの下に描画（変数名はlabelをそのまま使用）
-                Rect fieldRect = new Rect(
-                    position.x,
-                    position.y + EditorGUIUtility.singleLineHeight + 2,
-                    position.width,
-                    EditorGUI.GetPropertyHeight(property, label, true)
-                );
-                EditorGUI.PropertyField(fieldRect, property, label, true);  // labelをそのまま渡す
+                // フィールド用の矩形（ヘッダーの下）
+                currentRect.y += EditorGUIUtility.singleLineHeight + 2;
+                currentRect.height -= EditorGUIUtility.singleLineHeight + 2;
             }
-            else
-            {
-                // ヘッダーがない場合は通常通り描画
-                EditorGUI.PropertyField(position, property, label, true);
-            }
+
+            // 新しいGUIContentを作成（元の変数名を使用）
+            GUIContent fieldLabel = new GUIContent(property.displayName, label.tooltip);
+
+            // プロパティフィールドを描画
+            EditorGUI.PropertyField(currentRect, property, fieldLabel, true);
         }
     }
 
@@ -42,15 +47,16 @@ public class ConditionalHidePropertyDrawer : PropertyDrawer
 
         if (enabled)
         {
-            float height = EditorGUI.GetPropertyHeight(property, label, true);
+            // プロパティ本体の高さ
+            float propertyHeight = EditorGUI.GetPropertyHeight(property, label, true);
 
             // ヘッダーがあればその分の高さを追加
             if (!string.IsNullOrEmpty(condHAtt.Header))
             {
-                height += EditorGUIUtility.singleLineHeight + 2;
+                propertyHeight += EditorGUIUtility.singleLineHeight + 2;
             }
 
-            return height;
+            return propertyHeight;
         }
         else
         {
