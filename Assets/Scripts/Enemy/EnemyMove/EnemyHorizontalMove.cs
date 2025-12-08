@@ -17,7 +17,7 @@ public class EnemyHorizontalMove : EnemyActionBase
         }
     }
 
-    public override void Execute(float speed, float duration, float range, Transform transform)
+    public override void Execute(float speed, float duration, float range, Transform transform,int loopCount)
     {
         if (_sequence != null && _sequence.IsActive()) return;
 
@@ -37,6 +37,6 @@ public class EnemyHorizontalMove : EnemyActionBase
         _sequence.Append(transform.DOMoveX(_startPosX, moveDuration)
             .SetEase(Ease.InOutSine));
 
-        _sequence.SetLoops(-1);
+        _sequence.SetLoops(loopCount);
     }
 }

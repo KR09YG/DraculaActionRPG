@@ -20,5 +20,5 @@ public abstract class EnemyActionBase : ScriptableObject
     /// <param name="duration"></param>
     /// <param name="range"></param>
     /// <param name="transform"></param>
-    public abstract void Execute(float speed, float duration, float range, Transform transform);
+    public abstract void Execute(float speed, float duration, float range, Transform transform, int loopCount);
 }

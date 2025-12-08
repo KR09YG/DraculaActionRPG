@@ -18,7 +18,7 @@ public class EnemyVerticalMove : EnemyActionBase
         }
     }
 
-    public override void Execute(float speed, float duration, float range, Transform transform)
+    public override void Execute(float speed, float duration, float range, Transform transform, int loopCount)
     {
         if (_sequence != null && _sequence.IsActive()) return;
         
@@ -39,6 +39,6 @@ public class EnemyVerticalMove : EnemyActionBase
             .SetEase(Ease.InOutSine));
 
         // 無限ループ（左端でループが始まるので自然
-        _sequence.SetLoops(-1);
+        _sequence.SetLoops(loopCount);
     }
 }
