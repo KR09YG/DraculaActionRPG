@@ -1,11 +1,12 @@
+using System;
 using UnityEngine;
 
 public abstract class EnemyActionBase : ScriptableObject
 {
-    [SerializeField] private float _duration;
+    [SerializeField] private float _speed;
     [SerializeField] private float _range;
 
-    public float Duration => _duration;
+    public float Speed => _speed;
     public float Range => _range;
 
     /// <summary>
@@ -20,5 +21,5 @@ public abstract class EnemyActionBase : ScriptableObject
     /// <param name="duration"></param>
     /// <param name="range"></param>
     /// <param name="transform"></param>
-    public abstract void Execute(float speed, float duration, float range, Transform transform, int loopCount);
+    public abstract void Execute(float speed, float range, Transform transform, int loopCount, Action onCompleted = null);
 }

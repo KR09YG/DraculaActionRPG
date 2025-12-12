@@ -1,6 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.iOS;
+using System;
 
 [CreateAssetMenu(fileName = "EnemyVerticalMove", menuName = "Enemy/Actions/VerticalMove")]
 public class EnemyVerticalMove : EnemyActionBase
@@ -18,10 +18,11 @@ public class EnemyVerticalMove : EnemyActionBase
         }
     }
 
-    public override void Execute(float speed, float duration, float range, Transform transform, int loopCount)
+    public override void Execute(float speed, float range, Transform transform, int loopCount, Action onCompleted)
     {
         if (_sequence != null && _sequence.IsActive()) return;
-        
+        if (loopCount <= 0) Debug.LogError("ループ回数は1以上の値を指定してください。");
+
         // 移動にかかる時間を速度から計算
         float moveDuration = range / speed;
 
