@@ -1,8 +1,16 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 [CreateAssetMenu(fileName = "EnemySettings", menuName = "Scriptable Objects/EnemySettings")]
 public class EnemySettings : ScriptableObject
 {
-    public List<IEnemyMove> EnemyMoves = new List<IEnemyMove>();
+    [Header("Action Settings")]
+    public List<EnemyAction> Actions = new List<EnemyAction>();
+    public float Speed = 2f;
+    public int Health = 3;
+    public float ActionRange = 3f;
+    public float Power;
+    public ElementType ElementTyp;
 }
+
