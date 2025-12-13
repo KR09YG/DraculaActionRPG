@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 249d97224099e4e468da55cc6f6327b6, type: 3}
-  m_Name: EnemySettings
+  m_Name: FlyEnemyVer1
   m_EditorClassIdentifier: 
   Actions:
-  - Action: {fileID: 0}
-    LoopCount: 0
+  - Action: {fileID: 11400000, guid: 478e73c3a027824419a7caddc1ac7c49, type: 2}
+    LoopCount: -1
   Speed: 2
   Health: 3
-  ActionRange: 3
+  ActionRange: 8
   Power: 0
   ElementTyp: 0
