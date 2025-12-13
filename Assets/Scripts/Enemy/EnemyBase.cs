@@ -6,31 +6,35 @@ public abstract class EnemyBase : MonoBehaviour
 {
     [SerializeField] EnemySettings _enemySettings;
 
-    private List<EnemyAction> _actions = new List<EnemyAction>();
-    private float _speed = 2f;
-    private float _actionRange = 3f;
-    private float _power;
-    private int _health;
-    private ElementType _elementTyp;
+    protected List<EnemyAction> _actions = new List<EnemyAction>();
+    protected float _power;
+    protected int _health;
+    protected ElementType _elementTyp;
 
-    private int _currentActionIndex = 0;
-    private Sequence _currentSequence;
+    protected int _currentActionIndex = 0;
+    protected Sequence _currentSequence;
 
     private void Awake()
     {
         // 敵の基本設定を取得
-        _speed = _enemySettings.Speed;
-        _actionRange = _enemySettings.ActionRange;
         _power = _enemySettings.Power;
         _health = _enemySettings.Health;
         _elementTyp = _enemySettings.ElementTyp;
         _actions = _enemySettings.Actions;
+        InitializeAction(_actions[_currentActionIndex].Action);
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         InitializeEnemy();
         ExecuteCurrentAction();
+    }
+
+    protected virtual void InitializeAction(EnemyActionBase action)
+    {
+        action.Initialize(transform.position);
+        Debug.Log($"Initializing action: {action.GetType().Name}");
+        Debug.Log($"Current position: {transform.position}");
     }
 
     /// <summary>
@@ -53,19 +57,22 @@ public abstract class EnemyBase : MonoBehaviour
     /// 攻撃処理（継承先で必ず実装）
     /// </summary>
     protected abstract void Attack();
-    
+
     private void ExecuteCurrentAction()
     {
         if (_enemySettings.Actions.Count == 0) return;
-
+        Debug.Log("Execute Action: " + _currentActionIndex);
         var currentAction = _actions[_currentActionIndex].Action;
         int loopCount = _actions[_currentActionIndex].LoopCount;
-        currentAction.Execute(_speed, _actionRange, transform, loopCount, OnActionComplete);
+        float range = _actions[_currentActionIndex].Range;
+        float speed = _actions[_currentActionIndex].Speed;
+        currentAction.Execute(speed, range, transform, loopCount, OnActionComplete);
     }
 
     private void OnActionComplete()
     {
         _currentActionIndex = (_currentActionIndex + 1) % _actions.Count; // ループ処理
+        InitializeAction(_actions[_currentActionIndex].Action);
         ExecuteCurrentAction();
     }
 

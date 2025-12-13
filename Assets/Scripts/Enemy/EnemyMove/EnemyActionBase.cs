@@ -3,12 +3,6 @@ using UnityEngine;
 
 public abstract class EnemyActionBase : ScriptableObject
 {
-    [SerializeField] private float _speed;
-    [SerializeField] private float _range;
-
-    public float Speed => _speed;
-    public float Range => _range;
-
     /// <summary>
     /// ‰Šú‰»ˆ—
     /// </summary>

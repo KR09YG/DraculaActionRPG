@@ -7,9 +7,7 @@ public class EnemySettings : ScriptableObject
 {
     [Header("Action Settings")]
     public List<EnemyAction> Actions = new List<EnemyAction>();
-    public float Speed = 2f;
     public int Health = 3;
-    public float ActionRange = 3f;
     public float Power;
     public ElementType ElementTyp;
 }

@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using UnityEngine;
 using System;
 
@@ -18,28 +18,31 @@ public class EnemyVerticalMove : EnemyActionBase
         }
     }
 
+    
+    
+    /// <param name="loopCount">-1ãªã‚‰ç„¡é™ãƒ«ãƒ¼ãƒ—ã™ã‚‹</param>
     public override void Execute(float speed, float range, Transform transform, int loopCount, Action onCompleted)
     {
         if (_sequence != null && _sequence.IsActive()) return;
-        if (loopCount <= 0) Debug.LogError("ƒ‹[ƒv‰ñ”‚Í1ˆÈã‚Ì’l‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B");
+        if (loopCount == 0) Debug.LogWarning("ãƒ«ãƒ¼ãƒ—å›æ•°ãŒ0ã ã¨ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã¯ç„¡æ„å‘³ã§ã™");
 
-        // ˆÚ“®‚É‚©‚©‚éŠÔ‚ğ‘¬“x‚©‚çŒvZ
+        // ç§»å‹•ã«ã‹ã‹ã‚‹æ™‚é–“ã‚’é€Ÿåº¦ã‹ã‚‰è¨ˆç®—
         float moveDuration = range / speed;
 
-        // ‰º‚ªŠî€‚È‚Ì‚ÅA‚»‚±‚©‚ç‰E‚Érange‚Ì‹——£
+        // ä¸‹ãŒåŸºæº–ãªã®ã§ã€ãã“ã‹ã‚‰å³ã«rangeã®è·é›¢
         float upBound = _startPosY + range;
 
         _sequence = DOTween.Sequence();
 
-        // ‰º‚©‚çã
+        // ä¸‹ã‹ã‚‰ä¸Š
         _sequence.Append(transform.DOMoveY(upBound, moveDuration)
             .SetEase(Ease.InOutSine));
 
-        // ã‚©‚ç‰º
+        // ä¸Šã‹ã‚‰ä¸‹
         _sequence.Append(transform.DOMoveY(_startPosY, moveDuration)
             .SetEase(Ease.InOutSine));
 
-        // –³ŒÀƒ‹[ƒvi¶’[‚Åƒ‹[ƒv‚ªn‚Ü‚é‚Ì‚Å©‘R
+        // ç„¡é™ãƒ«ãƒ¼ãƒ—ï¼ˆå·¦ç«¯ã§ãƒ«ãƒ¼ãƒ—ãŒå§‹ã¾ã‚‹ã®ã§è‡ªç„¶
         _sequence.SetLoops(loopCount);
     }
 }
