@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actions:
   - Action: {fileID: 11400000, guid: 478e73c3a027824419a7caddc1ac7c49, type: 2}
+    Range: 6
+    Speed: 3
     LoopCount: -1
-  Speed: 2
   Health: 3
-  ActionRange: 8
   Power: 0
   ElementTyp: 0

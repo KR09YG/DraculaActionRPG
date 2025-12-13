@@ -12,5 +12,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47cc0c7f28a47e84f900bcb2cb2b5d51, type: 3}
   m_Name: EnemyHorizontalMove
   m_EditorClassIdentifier: 
-  _duration: 6
-  _range: 5
