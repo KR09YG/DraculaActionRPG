@@ -40,5 +40,13 @@ public class EnemyHorizontalMove : EnemyActionBase
             .SetEase(Ease.InOutSine));
 
         _sequence.SetLoops(loopCount);
+
+        if (loopCount != -1)
+        {
+            _sequence.OnComplete(() =>
+            {
+                onCompleted?.Invoke();
+            });
+        }
     }
 }

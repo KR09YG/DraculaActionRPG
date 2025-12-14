@@ -12,7 +12,7 @@ public class FlyEnemy : EnemyBase
     {
         base.Start(); // 親クラスのStartを先に実行
 
-        if (_isShaking)
+        if (_isShaking) // 縦揺れが有効な場合
         {
             InitializeAction(_verticalMove);
             VerticalShaking();

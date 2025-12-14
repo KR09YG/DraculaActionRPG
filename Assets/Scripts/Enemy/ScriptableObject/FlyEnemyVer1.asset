@@ -13,10 +13,18 @@ MonoBehaviour:
   m_Name: FlyEnemyVer1
   m_EditorClassIdentifier: 
   Actions:
+  - Action: {fileID: 11400000, guid: e13e13a170ee57b45aa7fff6edda9e39, type: 2}
+    Range: 2
+    Speed: 1
+    LoopCount: 1
+  - Action: {fileID: 11400000, guid: 943d30b8bfdc4ea489259efbad4a7838, type: 2}
+    Range: 2
+    Speed: 1
+    LoopCount: 1
   - Action: {fileID: 11400000, guid: 478e73c3a027824419a7caddc1ac7c49, type: 2}
-    Range: 6
-    Speed: 3
-    LoopCount: -1
+    Range: 2
+    Speed: 1
+    LoopCount: 1
   Health: 3
   Power: 0
   ElementTyp: 0

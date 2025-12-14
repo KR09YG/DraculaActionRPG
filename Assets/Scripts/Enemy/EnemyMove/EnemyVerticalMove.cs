@@ -44,5 +44,13 @@ public class EnemyVerticalMove : EnemyActionBase
 
         // 無限ループ（左端でループが始まるので自然
         _sequence.SetLoops(loopCount);
+
+        if (loopCount != -1)
+        {
+            _sequence.OnComplete(() =>
+            {
+                onCompleted?.Invoke();
+            });
+        }
     }
 }
