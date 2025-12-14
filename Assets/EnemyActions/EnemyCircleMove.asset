@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8d360fa9cb08648888c3ee96a285d7, type: 3}
   m_Name: EnemyCircleMove
   m_EditorClassIdentifier: 
-  _speed: 2
-  _range: 3
   _clockwise: 1
   _startAngleOffset: 0

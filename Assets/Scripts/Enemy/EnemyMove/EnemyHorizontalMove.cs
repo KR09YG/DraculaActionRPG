@@ -21,7 +21,7 @@ public class EnemyHorizontalMove : EnemyActionBase
     public override void Execute(float speed, float range, Transform transform, int loopCount, Action onCompleted)
     {
         if (_sequence != null && _sequence.IsActive()) return;
-        if (loopCount == 0) Debug.LogWarning("ループ回数が0だとアクションは無意味です");
+        if (loopCount <= 0) Debug.LogError("ループ回数は1以上の値を指定してください。");
 
         // 移動にかかる時間を速度から計算
         float moveDuration = range / speed;
@@ -40,5 +40,13 @@ public class EnemyHorizontalMove : EnemyActionBase
             .SetEase(Ease.InOutSine));
 
         _sequence.SetLoops(loopCount);
+
+        if (loopCount != -1)
+        {
+            _sequence.OnComplete(() =>
+            {
+                onCompleted?.Invoke();
+            });
+        }
     }
 }
